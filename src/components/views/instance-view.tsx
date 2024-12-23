@@ -193,10 +193,12 @@ export function ThankYouPage({ results }: { results: { [key: string]: number | n
     `&entry.1348927192=${parseResults(results)[7]}` +
     `&entry.1483199699=${parseResults(results)[8]}` +
     `&entry.1502669296=${parseResults(results)[9]}` +
-    `&entry.1665242526=${parseResults(results)[10]}`;
+    `&entry.1665242526=${parseResults(results)[10]}` +
+    `&entry.943128382=${parseResults(results)[11]}` +
+    `&entry.992319369=${parseResults(results)[12]}`;
 
   return (
-    <div className="min-h-svh w-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <Confetti />
 
       <HyperText
@@ -233,12 +235,12 @@ function InstanceView() {
     <>
       {pairings.length > 0
         ?
-        <div className="w-screen h-svh flex flex-col">
+        <div className="w-screen h-screen flex flex-col">
           <ComparisonSwiper />
           <BottomBar />
         </div>
         :
-        <div className="w-screen h-svh flex flex-col items-center justify-center">
+        <div className="w-screen h-screen flex flex-col items-center justify-center">
           <ThankYouPage results={results} />
         </div>
       }
