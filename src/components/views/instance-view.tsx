@@ -143,10 +143,10 @@ function BottomBar() {
             onValueChange={(value) => setRole(value)}
           >
             <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="p">Participant</TabsTrigger>
-              <TabsTrigger value="s">Sponsor</TabsTrigger>
-              <TabsTrigger value="j">Judge</TabsTrigger>
-              <TabsTrigger value="o">Organizer</TabsTrigger>
+              <TabsTrigger className="bg-white" value="p">Participant</TabsTrigger>
+              <TabsTrigger className="bg-white" value="s">Sponsor</TabsTrigger>
+              <TabsTrigger className="bg-white" value="j">Judge</TabsTrigger>
+              <TabsTrigger className="bg-white" value="o">Organizer</TabsTrigger>
             </TabsList>
           </Tabs>
 
