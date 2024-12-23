@@ -5,7 +5,7 @@ import { DotPattern } from "@/components/ui/dot-pattern"
 function LandingView() {
     const navigate = useNavigate()
     return (
-        <div className="w-screen h-screen flex flex-col items-start md:items-center justify-center p-2">
+        <div className="w-screen h-dvh flex flex-col items-start md:items-center justify-center p-2">
 
             <DotPattern />
 
