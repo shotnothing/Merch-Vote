@@ -65,7 +65,7 @@ function ComparisonPage({ index }: { index: number | null }) {
                 <Spinner size="lg" className="bg-white" />
               </div>
             )}
-            <img src={image} className="w-full h-full object-contain"
+            <img src={image} className={cn("w-full h-full object-contain", isLoading ? 'opacity-0' : 'opacity-100')}
               onLoad={handleImageLoadOrError}
               onError={handleImageLoadOrError}
             />
