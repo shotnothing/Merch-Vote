@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Card, CardContent } from "@/components/ui/card"
+import '@/swiper.css' // Some issue swiper's backward compatibility
 import CardDisplay from "./card-display"
 import { useOptionsStore, useInstanceStore } from "@/components/views/instance-view"
 import { ChevronUpIcon, ChevronDownIcon } from "lucide-react"
