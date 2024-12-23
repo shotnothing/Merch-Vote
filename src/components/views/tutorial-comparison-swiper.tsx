@@ -1,9 +1,6 @@
 import * as React from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Card, CardContent } from "@/components/ui/card"
-import 'swiper/css'
-import 'swiper/css/pagination'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { ChevronUpIcon, ChevronDownIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
