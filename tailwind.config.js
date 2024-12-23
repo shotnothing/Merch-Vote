@@ -57,7 +57,8 @@ export default {
   		animation: {
   			grid: 'grid 15s linear infinite',
   			marquee: 'marquee var(--duration) infinite linear',
-  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
+  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+  			'spinner-leaf-fade': 'spinner-leaf-fade 800ms linear infinite'
   		},
   		keyframes: {
   			grid: {
@@ -82,6 +83,14 @@ export default {
   				},
   				to: {
   					transform: 'translateY(calc(-100% - var(--gap)))'
+  				}
+  			},
+  			'spinner-leaf-fade': {
+  				'0%, 100%': {
+  					opacity: '0'
+  				},
+  				'50%': {
+  					opacity: '1'
   				}
   			}
   		}

@@ -7,6 +7,7 @@ import { useOptionsStore, useInstanceStore } from "@/components/views/instance-v
 import { ChevronUpIcon, ChevronDownIcon } from "lucide-react"
 import { LETTERS, EXISTING_FILES, LANDSCAPE_LETTERS } from "@/App"
 import { cn } from "@/lib/utils"
+import { Spinner } from "@/components/ui/spinner"
 
 function HeaderPage() {
   return (
@@ -47,14 +48,28 @@ function ComparisonPage({ index }: { index: number | null }) {
   const letter = LETTERS[index];
   const image = `/tags/tag.${letter}.${role}.${side}.png`
 
+  const [isLoading, setIsLoading] = React.useState(true);
+  const handleImageLoadOrError = () => {
+    setIsLoading(false);
+  };
+
   return (
     <Card className="h-full bg-[#1e1e1e] rounded-none border-none">
       <CardContent className="flex items-center justify-center p-6 h-full">
         {/* <div className="text-white text-2xl">{letter}</div> */}
 
         {EXISTING_FILES.includes(image.replace('/tags/', '')) ?
-          mode === '2D' ?
-            <img src={image} className="w-full h-full object-contain" />
+          mode === '2D' ? <>
+            {isLoading && (
+              <div className="absolute">
+                <Spinner size="lg" className="bg-white" />
+              </div>
+            )}
+            <img src={image} className="w-full h-full object-contain"
+              onLoad={handleImageLoadOrError}
+              onError={handleImageLoadOrError}
+            />
+          </>
             :
             <CardDisplay image={image} portrait={LANDSCAPE_LETTERS.includes(letter)} />
           :
