@@ -78,7 +78,7 @@ function TutorialView() {
                         <div className="flex flex-col items-center justify-center gap-4">
                             <div className="font-bold">Welcome to the tutorial!</div>
                             <Button 
-                                className="bg-white text-black"
+                                className="bg-white text-black hover:text-white"
                                 onClick={() => {
                                     setTutorialProgress(1);
                                 }}
@@ -137,7 +137,7 @@ function TutorialView() {
                         <div className="flex flex-col items-center justify-center gap-4">
                             <div className="font-bold">You are all set!</div>
                             <Button 
-                                className="bg-white text-black"
+                                className="bg-white text-black hover:text-white"
                                 onClick={() => {
                                     navigate('/vote');
                                 }}
