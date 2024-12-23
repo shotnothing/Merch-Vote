@@ -1,73 +1,86 @@
 import * as React from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Card, CardContent } from "@/components/ui/card"
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { ChevronUpIcon, ChevronDownIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 
-function HeaderPage({ tutorialProgress }: { tutorialProgress: number }) {
-  const [bgColor, setBgColor] = React.useState('bg-black')
-
-  React.useEffect(() => {
-    if (tutorialProgress === 2) {
-      const timer = setTimeout(() => {
-        setBgColor('bg-red-500')
-      }, 1000)
-
-      return () => clearTimeout(timer)
-    } else {
-      setBgColor('bg-black')
-    }
-  }, [tutorialProgress])
+function HeaderPage({ tutorialProgress, transitioning }: { tutorialProgress: number, transitioning: boolean }) {
+  if (transitioning) {
+    return (
+      <Card className="h-full bg-green-500 rounded-none border-none">
+        <CardContent className="flex items-end justify-center p-2 h-full">
+          <div className="flex flex-col items-center gap-2">
+            <div className="text-white text-2xl">Good job!</div>
+            <ChevronDownIcon className="w-8 h-8 text-white" />
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
-    <Card className={`h-full ${bgColor} rounded-none border-none transition-colors duration-1000`}>
-      <CardContent className="flex items-end justify-center p-2 h-full">
-        <div className="flex flex-col items-center gap-2">
-          {tutorialProgress !== 2 ? (
-            <>
+    <>
+      {tutorialProgress != 2 ? (
+        <Card className="h-full bg-black rounded-none border-none">
+          <CardContent className="flex items-end justify-center p-2 h-full">
+            <div className="flex flex-col items-center gap-2">
               <div className="text-white text-2xl">I prefer the top design</div>
               <ChevronDownIcon className="w-8 h-8 text-white" />
-            </>
-          ) : (
-            <div className="text-white text-2xl">Wrong direction!</div>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+            </div>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card className="h-full bg-red-500 rounded-none border-none">
+          <CardContent className="flex items-end justify-center p-2 h-full">
+            <div className="flex flex-col items-center gap-2">
+              <div className="text-white text-2xl">Wrong direction!</div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </>
   )
 }
 
-function FooterPage({ tutorialProgress }: { tutorialProgress: number }) {
-  const [bgColor, setBgColor] = React.useState('bg-black')
-
-  React.useEffect(() => {
-    if (tutorialProgress === 1) {
-      const timer = setTimeout(() => {
-        setBgColor('bg-red-500')
-      }, 1000)
-
-      return () => clearTimeout(timer)
-    } else {
-      setBgColor('bg-black')
-    }
-  }, [tutorialProgress])
+function FooterPage({ tutorialProgress, transitioning }: { tutorialProgress: number, transitioning: boolean }) {
+  if (transitioning) {
+    return (
+      <Card className="h-full bg-green-500 rounded-none border-none">
+        <CardContent className="flex items-start justify-center p-2 h-full">
+          <div className="flex flex-col items-center gap-2">
+            <ChevronUpIcon className="w-8 h-8 text-white" />
+            <div className="text-white text-2xl">Good job!</div>
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
-    <Card className={`h-full ${bgColor} rounded-none border-none transition-colors duration-1000`}>
-      <CardContent className="flex items-start justify-center p-2 h-full">
-        <div className="flex flex-col items-center gap-2">
-          {tutorialProgress !== 1 ? (
-            <>
-              <div className="text-white text-2xl">I prefer the bottom design</div>
+    <>
+      {tutorialProgress != 1 ? (
+        <Card className="h-full bg-black rounded-none border-none">
+          <CardContent className="flex items-start justify-center p-2 h-full">
+            <div className="flex flex-col items-center gap-2">
               <ChevronUpIcon className="w-8 h-8 text-white" />
-            </>
-          ) : (
-            <div className="text-white text-2xl">Wrong direction!</div>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+              <div className="text-white text-2xl">I prefer the bottom design</div>
+            </div>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card className="h-full bg-red-500 rounded-none border-none">
+          <CardContent className="flex items-start justify-center p-2 h-full">
+            <div className="flex flex-col items-center gap-2">
+              <div className="text-white text-2xl">Wrong direction!</div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </>
   )
 }
 
@@ -152,14 +165,14 @@ function ComparisonPage({ index, tutorialProgress }: { index: number | null, tut
 }
 
 export function TutorialComparisonSwiper({ tutorialProgress, setTutorialProgress }: { tutorialProgress: number, setTutorialProgress: (value: number) => void }) {
+  const [transitioning, setTransitioning] = React.useState(false);
+  
   return (
     <Swiper
       slidesPerView={2}
       direction="vertical"
       className={cn("h-full w-full", tutorialProgress >= 3 ? "swiper-no-swiping" : "")}
       initialSlide={1}
-
-
 
       onSlideChangeTransitionStart={(swiper) => {
         // Check if swipe was up
@@ -169,6 +182,11 @@ export function TutorialComparisonSwiper({ tutorialProgress, setTutorialProgress
 
           if (tutorialProgress == 2) {
             setTutorialProgress(3);
+
+            setTransitioning(true);
+            setTimeout(() => {
+              setTransitioning(false);
+            }, 500);
           }
 
         }
@@ -180,14 +198,19 @@ export function TutorialComparisonSwiper({ tutorialProgress, setTutorialProgress
 
           if (tutorialProgress == 1) {
             setTutorialProgress(2);
+
+            setTransitioning(true);
+            setTimeout(() => {
+              setTransitioning(false);
+            }, 500);
           }
         }
       }}
     >
-      <SwiperSlide> <HeaderPage tutorialProgress={tutorialProgress} /> </SwiperSlide>
+      <SwiperSlide> <HeaderPage tutorialProgress={tutorialProgress} transitioning={transitioning}/> </SwiperSlide>
       <SwiperSlide> <ComparisonPage tutorialProgress={tutorialProgress} key={0} index={tutorialProgress == 2 ? 1 : 0} /> </SwiperSlide>
       <SwiperSlide> <ComparisonPage tutorialProgress={tutorialProgress} key={1} index={tutorialProgress == 2 ? 0 : 1} /> </SwiperSlide>
-      <SwiperSlide> <FooterPage tutorialProgress={tutorialProgress} /> </SwiperSlide>
+      <SwiperSlide> <FooterPage tutorialProgress={tutorialProgress} transitioning={transitioning}/> </SwiperSlide>
     </Swiper >
   )
 }
