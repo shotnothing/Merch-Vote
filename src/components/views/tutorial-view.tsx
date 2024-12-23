@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { TutorialComparisonSwiper } from "./tutorial-comparison-swiper";
 import { cn } from "@/lib/utils"
 import { useNavigate } from "react-router-dom";
+import { ChevronsDownIcon } from "lucide-react";
+
 
 function BottomBar({ tutorialProgress, setTutorialProgress }: { tutorialProgress: number, setTutorialProgress: (value: number) => void }) {
     return (
@@ -15,10 +17,10 @@ function BottomBar({ tutorialProgress, setTutorialProgress }: { tutorialProgress
                     }
                 }}>
                     <TabsList className={cn("grid w-full grid-cols-4", tutorialProgress != 3 ? "blur-sm" : "")}>
-                        <TabsTrigger value="p" disabled={tutorialProgress != 3}>Participant</TabsTrigger>
-                        <TabsTrigger value="s" disabled={tutorialProgress != 3}>Sponsor</TabsTrigger>
-                        <TabsTrigger value="j" disabled={tutorialProgress != 3}>Judge</TabsTrigger>
-                        <TabsTrigger value="o" disabled={tutorialProgress != 3}>Organizer</TabsTrigger>
+                        <TabsTrigger className="bg-white" value="p" disabled={tutorialProgress != 3}>Participant</TabsTrigger>
+                        <TabsTrigger className="bg-white" value="s" disabled={tutorialProgress != 3}>Sponsor</TabsTrigger>
+                        <TabsTrigger className="bg-white" value="j" disabled={tutorialProgress != 3}>Judge</TabsTrigger>
+                        <TabsTrigger className="bg-white" value="o" disabled={tutorialProgress != 3}>Organizer</TabsTrigger>
                     </TabsList>
                 </Tabs>
 
@@ -88,12 +90,13 @@ function TutorialView() {
                 {tutorialProgress == 3 && (
                     <div className="z-20 text-white text-3xl absolute 
                         flex flex-col items-center justify-center
-                            top-1/3 left-0 w-full h-full
+                            top-0 left-0 w-full h-full
                             pointer-events-none
                         ">
                         <div className="flex flex-col items-center justify-center gap-2">
                             <div className="font-bold">View Different Roles!</div>
-                            <div className="text-white text-xl"> Click on a different role to view it </div>
+                            <div className="text-white text-xl"> Click on a different role to view it  </div>
+                            <ChevronsDownIcon />
                         </div>
                     </div>
                 )}
@@ -101,12 +104,13 @@ function TutorialView() {
                 {tutorialProgress == 4 && (
                     <div className="z-20 text-white text-3xl absolute 
                         flex flex-col items-center justify-center
-                            top-1/3 left-0 w-full h-full
+                            top-0 left-0 w-full h-full
                             pointer-events-none
                         ">
                         <div className="flex flex-col items-center justify-center gap-2">
                             <div className="font-bold">Flip to the back!</div>
                             <div className="text-white text-xl"> Click on the flip button to view the back </div>
+                            <ChevronsDownIcon />
                         </div>
                     </div>
                 )}
@@ -114,12 +118,13 @@ function TutorialView() {
                 {tutorialProgress == 5 && (
                     <div className="z-20 text-white text-3xl absolute 
                         flex flex-col items-center justify-center
-                            top-1/3 left-0 w-full h-full
+                            top-0 left-0 w-full h-full
                             pointer-events-none
                         ">
                         <div className="flex flex-col items-center justify-center gap-2">
                             <div className="font-bold">View in 3D!</div>
                             <div className="text-white text-xl"> Click on the 3D button to view in 3D </div>
+                            <ChevronsDownIcon />
                         </div>
                     </div>
                 )}
