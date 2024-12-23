@@ -66,7 +66,7 @@ function TutorialView() {
 
     return (
         <>
-            <div className="w-screen h-dvh flex flex-col">
+            <div className="w-screen h-svh flex flex-col">
                 <TutorialComparisonSwiper tutorialProgress={tutorialProgress} setTutorialProgress={setTutorialProgress} />
                 <BottomBar tutorialProgress={tutorialProgress} setTutorialProgress={setTutorialProgress} />
 
